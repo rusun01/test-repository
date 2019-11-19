@@ -23,7 +23,7 @@ function makeNewRelease() {
     local jsonBody="{ \"tag_name\": \"$nextRelease\", \"target_commitish\": \"master\", \"name\": \"$nextRelease\", \"body\": \"Making a new release. This version is $nextRelease\", \"draft\": false, \"prerelease\": false }"
 
     curl -X POST \
-        $githubURL/releases?access_token=$gitHubAccessToken \
+        $githubURL/releases \
         -H 'Content-Type: application/json' \
         -d "$jsonBody" \
         --fail
