@@ -15,7 +15,7 @@ pipeline{
                     sh """#!/bin/bash
                         source ./create-release.sh
                         githubURL='https://github.com/rusun01/test-repository'
-                        makeNewRelease %{env.nextRelease}
+                        makeNewRelease ${env.nextRelease}
                     """
                 }
 
