@@ -8,7 +8,7 @@ pipeline{
                         source create-release.sh
                         githubURL = 'https://github.com/rusun01/test-repository'
                         getNextRelease $(getLatestRelease)
-                    ''', return Stdout: true
+                    ''', returnStdout: true
 
                     sh """#!/bin/bash
                         source create-release.sh
