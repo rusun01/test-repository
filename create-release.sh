@@ -1,5 +1,5 @@
 function getLatestRelease() {
-    local releaseFound=$(curl -sb -H "Accept: application/json" $githubURL/releases/latest?access_token=$gitHubAccessToken | jq -r '.tag_name')
+    local releaseFound=$(curl -sb -H "Accept: application/json" $githubURL/releases/latest| jq -r '.tag_name')
 
     if [ $releaseFound != "null" ]; then
         local latestRelease=$releaseFound
