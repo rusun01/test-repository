@@ -3,6 +3,7 @@ pipeline{
     stages{
         stage('create release'){
             steps{
+                deleteDir()
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/rusun01/test-repository']]])
                 script{
                     sh 'ls -la'
