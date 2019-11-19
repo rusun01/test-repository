@@ -9,13 +9,13 @@ pipeline{
                     sh 'ls -la'
                     env.nextRelease = sh script: ''' #!/bin/bash
                         source ./create-release.sh
-                        githubURL='https://github.com/rusun01/test-repository'
+                        githubURL='https://api.github.com/repos/rusun01/test-repository'
                         getNextRelease $(getLatestRelease)
                     ''', returnStdout: true
 
                     sh """#!/bin/bash
                         source ./create-release.sh
-                        githubURL='https://github.com/rusun01/test-repository'
+                        githubURL='https://api.github.com/repos/rusun01/test-repository'
                         makeNewRelease ${env.nextRelease}
                     """
                 }

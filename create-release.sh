@@ -1,9 +1,9 @@
 function init() {
-    githubURL="https://github.com/rusun01/test-repository"
+    githubURL="https://api.github.com/repos/rusun01/test-repository"
 }
 
 function getLatestRelease() {
-    local releaseFound=$(curl -sb -H "Accept: application/json" $githubURL/releases/latest| jq -r '.tag_name')
+    local releaseFound=$(curl -sb -H "Accept: application/json" $githubURL/releases/latest | jq -r '.tag_name')
     echo $releaseFound
     if [ $releaseFound != 'null' ]; then
         local latestRelease=$releaseFound
