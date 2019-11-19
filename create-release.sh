@@ -4,8 +4,8 @@ function init() {
 
 function getLatestRelease() {
     local releaseFound=$(curl -sb -H "Accept: application/json" $githubURL/releases/latest| jq -r '.tag_name')
-
-    if [ $releaseFound != "null" ]; then
+    echo $releaseFound
+    if [ $releaseFound != 'null' ]; then
         local latestRelease=$releaseFound
     else
         local latestRelease=0
