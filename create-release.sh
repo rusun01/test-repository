@@ -25,11 +25,26 @@ function makeNewRelease() {
     echo "Making release: $nextRelease"
 
     local jsonBody="{ \"tag_name\": \"$nextRelease\", \"target_commit_is \": \"master\", \"name\": \"$nextRelease\", \"body\": \"Making a new release. This version is $nextRelease\", \"draft\": false, \"prerelease\": false }"
+    
     echo $jsonBody
     echo $githubURL
-    curl -X POST \
-        $githubURL/releases \
-        -H 'Content-Type: application/json' \
-        -d "$jsonBody" \
-        --fail
+
+    local upload_url=$(curl -s -H $jsonBody \
+     $githubURL/releases | jq -r '.upload_url')
+    echo $upload_url
+    upload_url="${upload_url%\{*}"
+
+    echo "uploading asset to release to url : $upload_url"
 }
+
+    # curl -s -H "Authorization: token $token"  \
+    #         -H "Content-Type: application/zip" \
+    #         --data-binary @test.zip  \
+    #         "$upload_url?name=test.zip&label=some-binary.zip" 
+
+    # curl -X POST \
+    #     $githubURL/releases \
+    #     -H 'Content-Type: application/json' \
+    #     -d "$jsonBody" \
+    #     --fail
+# }
