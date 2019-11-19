@@ -24,8 +24,9 @@ function makeNewRelease() {
     local nextRelease=$1
     echo "Making release: $nextRelease"
 
-    local jsonBody="{ \"tag_name\": \"$nextRelease\", \"target_commitish\": \"master\", \"name\": \"$nextRelease\", \"body\": \"Making a new release. This version is $nextRelease\", \"draft\": false, \"prerelease\": false }"
-
+    local jsonBody="{ \"tag_name\": \"$nextRelease\", \"target_commit_is \": \"master\", \"name\": \"$nextRelease\", \"body\": \"Making a new release. This version is $nextRelease\", \"draft\": false, \"prerelease\": false }"
+    echo $jsonBody
+    echo $githubURL
     curl -X POST \
         $githubURL/releases \
         -H 'Content-Type: application/json' \
