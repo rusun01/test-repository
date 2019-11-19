@@ -31,7 +31,7 @@ function makeNewRelease() {
 
     local upload_url=$(curl -s -H -d '\'$jsonBody'\' "$githubURL/releases" | jq -r '.upload_url')
    
-    upload_url="${upload_url}%\{*}"
+    #upload_url="${upload_url}%\{*}"
     echo "uploading asset to release to url : $upload_url"
 }
 
