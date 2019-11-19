@@ -29,11 +29,10 @@ function makeNewRelease() {
     echo $jsonBody
     echo $githubURL
 
-    local upload_url=$(curl -s -H $jsonBody \
-     $githubURL/releases | jq -r '.upload_url')
-    echo $upload_url
+    local upload_url=$(curl -s -H -d '{"tag_name": \"$nextRelease\", \"target_commit_is \": \"master\",\"name\": \"$nextRelease\",\"body\": \"Making a new release. This version is $nextRelease\", \"draft\": false, \"prerelease\": false}'  \
+     "$githubURL/releases" | jq -r '.upload_url')
+   
     upload_url="${upload_url%\{*}"
-
     echo "uploading asset to release to url : $upload_url"
 }
 
